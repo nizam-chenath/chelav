@@ -1,40 +1,48 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import Button from '@mui/material/Button';
+import AppBar from './components/AppBar'
+import TransactionForm from "./components/TransactionForm";
+import TransactionsList from "./components/TransactionsList";
 
 function App() {
 
-  const [form, setForm] = useState({
-    amount:0,
-    description: "",
-    date: "",
-  })
 
-  const handleSubmit = async ( e ) =>{
-    e.preventDefault()
-    console.log("working");
-  const res = await  fetch("http://localhost:4000/transaction",{
-    method: "POST",
-    body: form,
-  });
-  console.log(res)
-  }
-  const handleInput = (e) =>{
-    console.log('====================================');
-    console.log(e.target.value);
-    console.log('====================================');
 
-    setForm({...form,[e.target.name] :e.target.value})
+  const [transactions, setTransactions] = useState([])
+
+  useEffect(() => {
  
+    fetchTransaction()
+  }, [])
+
+  const  fetchTransaction = async() =>{
+
+    //it is for fetching transacti on datas from database. it is default GET method
+  
+    const res = await fetch("http://localhost:4000/transaction")
+    const {data} = await res.json();
+   setTransactions(data)
+    console.log(data)
+    console.log("datas", transactions)
 
   }
+  
+
+
+
   return (
     <div className="App">
-     <form action="" onSubmit={handleSubmit}>
-       <input name="amount" type="number" value={form.amount} onChange={handleInput} placeholder="Enter transaction amount" />
-       <input name="description" type="text" value={form.description} onChange={handleInput} placeholder="Enter transaction detail" />
-       <input name="date" onChange={handleInput} type="date"  value={form.date}/>
-       <button type="submit" >submit</button>
-     </form>
+
+      <AppBar />
+      
+      <TransactionForm fetchTransaction={fetchTransaction} />
+
+      <TransactionsList transactions={transactions}/>
+   
+
+     <br />
+
+     
     </div>
   );
 }
