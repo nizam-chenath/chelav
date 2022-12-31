@@ -1,27 +1,30 @@
 import express from 'express';
-import mongoose from "mongoose";
+import connect from './database/mongodb.js'
 
 import cors from 'cors'
+import bodyParser from 'body-parser';
+import TransactionsApi from "./routes/TransactionsApi.js"
 
 
 
 const PORT = 4000
 const app = express();
 
-app.use(cors) //used because of adding datas in to database from react
-
-mongoose.set('strictQuery', false)
-
-await mongoose.connect("mongodb+srv://chelav:chelav123@chelav.y5brogx.mongodb.net/?retryWrites=true&w=majority").then(()=>{
-    console.log("mongoDB connection is successful")
-}).catch((err) =>{
-    console.log(err)
-})
+app.use(cors()) //used because of adding datas in to database from react
+app.use(bodyParser.json())
 
 app.get('/', (req,res)=>{
-     res.send("Hello world")
+    res.send("Hello world")
 });
 
+
+app.use('/transaction', TransactionsApi);
+
+await connect(); //we make a function for mogodb connection
+
+
+
+//listen server orn this port
 app.listen(PORT,()=>{
     console.log("server started")
 })
