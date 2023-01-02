@@ -11,25 +11,22 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import {useState, useEffect} from 'react'
 import Cookies from 'js-cookie'
 import  Box  from '@mui/material/Box';
+import {useSelector} from 'react-redux'
 
 
 const initialForm = {
     amount:0,
     description: "",
     date: new Date(),
-    category: "",
+    category_id: "",
   }
 export default function TransactionForm({fetchTransaction, editTransaction}) {
-
+    
+    const {categories} = useSelector((state) => state.auth.user)
     const token = Cookies.get('token')
     const [form, setForm] = useState(initialForm);
 
-    const categories = [
-      {label:'Travel'},
-      {label:'Shopping'},
-      {label:'Investment'},
-      {label:'Bills'},
-    ]
+    
 
     useEffect(()=>{
       if(editTransaction.amount !== undefined){
@@ -94,6 +91,10 @@ Authorization : `Bearer ${token}`,
 reload(res);
 }
 
+const getCategoryNameById = () =>{
+  return categories.find((category) => category.id === form.category_id)?? ""
+}
+
   return (
     <Card sx={{ minWidth: 275, marginTop: 10 }}>
       <CardContent>
@@ -116,9 +117,9 @@ reload(res);
         />
             </LocalizationProvider>
             <Autocomplete
-        value={form.category}
+        value={getCategoryNameById()}
         onChange={(event, newValue) => {
-          setForm({...form, category: newValue.label})
+          setForm({...form, category_id: newValue._id})
         }}
       
         id="controllable-states-demo"

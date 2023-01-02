@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import App from './App';
 import { createBrowserRouter, } from 'react-router-dom'
-
+import Category from './pages/Category'
 import CheckAuth from './utils/CheckAuth';
 import Guest from './utils/Guest';
 
@@ -33,6 +33,12 @@ export default createBrowserRouter([
         element:<Guest>
                  <Register/>
         </Guest> 
+      },
+      {
+        path: "/category",
+        element:<CheckAuth>
+                 <Category/>
+        </CheckAuth> 
       },
     ]
     },

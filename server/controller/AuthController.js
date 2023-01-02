@@ -26,7 +26,13 @@ export const register = async (req,res)=>{
 const hashedPassword = await bcrypt.hashSync(password, salt);
 
 
-    const user = await User( {email, password:hashedPassword, firstName, lastName,categories})
+    const user = await User( {
+        email,
+         password:hashedPassword,
+          firstName,
+           lastName,
+          categories,
+        })
     //store user
      await user.save();
  

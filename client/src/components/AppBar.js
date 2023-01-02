@@ -40,6 +40,9 @@ export default function ButtonAppBar() {
             Chelav
           </Link>
           </Typography>
+          <Link to='/category' className="text-white">
+          <Button color="inherit">Category</Button>
+          </Link>
 
           {
             isAuthenticated && (
