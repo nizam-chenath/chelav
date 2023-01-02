@@ -11,7 +11,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import dayjs from 'dayjs'
-
+import Cookies from 'js-cookie';
 
 
 
@@ -19,10 +19,13 @@ import dayjs from 'dayjs'
 export default function TransactionsList({transactions,fetchTransaction,setEditTransaction}) {
 
   const remove = async(_id) =>{
-
+    const token = Cookies.get('token')
     if(!window.confirm("Are you sure")) return;
     const res = await fetch(`http://localhost:5000/transaction/${_id}`,{
       method: "DELETE",
+      headers:{
+        Authorization: `Bearer ${token}`
+      }
     });
     if(res.ok){
       fetchTransaction();

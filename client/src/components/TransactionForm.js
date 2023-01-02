@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-
+import Autocomplete from '@mui/material/Autocomplete';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -9,15 +9,27 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import {useState, useEffect} from 'react'
+import Cookies from 'js-cookie'
+import  Box  from '@mui/material/Box';
 
 
 const initialForm = {
     amount:0,
     description: "",
     date: new Date(),
+    category: "",
   }
 export default function TransactionForm({fetchTransaction, editTransaction}) {
+
+    const token = Cookies.get('token')
     const [form, setForm] = useState(initialForm);
+
+    const categories = [
+      {label:'Travel'},
+      {label:'Shopping'},
+      {label:'Investment'},
+      {label:'Bills'},
+    ]
 
     useEffect(()=>{
       if(editTransaction.amount !== undefined){
@@ -62,6 +74,7 @@ export default function TransactionForm({fetchTransaction, editTransaction}) {
     body: JSON.stringify(form),
     headers: {
      "content-type":"application/json", //for passing json
+     Authorization : `Bearer ${token}`,
     },
   });
   reload(res);
@@ -75,6 +88,7 @@ method: "PATCH",
 body: JSON.stringify(form),
 headers: {
 "content-type":"application/json", //for passing json
+Authorization : `Bearer ${token}`,
 },
 });
 reload(res);
@@ -83,11 +97,12 @@ reload(res);
   return (
     <Card sx={{ minWidth: 275, marginTop: 10 }}>
       <CardContent>
-       <form action="" onSubmit={handleSubmit}>
-
         <Typography variant="h6">
           Hey, any new transaction :)
         </Typography>
+        <Box component='form' onSubmit={handleSubmit} sx={{display: "flex"}}>
+       
+
 
         <TextField size="small" name="amount" value={form.amount} onChange={handleChange} sx={{marginRight: 5}} id="outlined-basic" label="Amount" variant="outlined" />
         <TextField size="small" name="description" value={form.description} onChange={handleChange} sx={{marginRight: 5}} id="outlined-basic" label="Description" variant="outlined" />
@@ -100,6 +115,17 @@ reload(res);
           renderInput={(params) => <TextField size="small"  sx={{marginRight: 5}} {...params} />}
         />
             </LocalizationProvider>
+            <Autocomplete
+        value={form.category}
+        onChange={(event, newValue) => {
+          setForm({...form, category: newValue.label})
+        }}
+      
+        id="controllable-states-demo"
+        options={categories}
+        sx={{ width: 200 , marginRight:5}}
+        renderInput={(params) => <TextField {...params} label="Category" />}
+      />
             {
               editTransaction.amount !== undefined ?
               <Button type="submit" variant="contained">update</Button>
@@ -107,7 +133,7 @@ reload(res);
 
             <Button type="submit" variant="contained">Submit</Button>
             }
-       </form>
+       </Box>
       </CardContent>
      
     </Card>
