@@ -17,7 +17,7 @@ import {useSelector} from 'react-redux'
 
 
 
-export default function TransactionsList({transactions,fetchTransaction,setEditTransaction}) {
+export default function TransactionsList({data,fetchTransaction,setEditTransaction}) {
 
      const user = useSelector((state) => state.auth.user)
 
@@ -62,34 +62,39 @@ export default function TransactionsList({transactions,fetchTransaction,setEditT
           </TableRow>
         </TableHead>
         <TableBody>
-          {transactions.map((row) => (
-            <TableRow
-              key={row._id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row" align="center">
-                {row.amount}
-              </TableCell>
-              <TableCell align="center">{row.description}</TableCell>
-              <TableCell align="center">{categoryName(row.category_id)}</TableCell>
-              <TableCell align="center">{formatDate(row.date)}</TableCell>
-              <TableCell align="center">
-
-        
-
-<IconButton color="primary" onClick={() => setEditTransaction(row)} >
-                <EditIcon />
-  
-                
-</IconButton>
-<IconButton color="warning" onClick={() => remove(row._id)} >
-  
-                <DeleteIcon />
-</IconButton>
-              </TableCell>
- 
-            </TableRow>
-          ))}
+          {
+            data.map((month) => (
+              month.transactions.map((row) => (
+                <TableRow
+                  key={row._id}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row" align="center">
+                    {row.amount}
+                  </TableCell>
+                  <TableCell align="center">{row.description}</TableCell>
+                  <TableCell align="center">{categoryName(row.category_id)}</TableCell>
+                  <TableCell align="center">{formatDate(row.date)}</TableCell>
+                  <TableCell align="center">
+    
+            
+    
+    <IconButton color="primary" onClick={() => setEditTransaction(row)} >
+                    <EditIcon />
+      
+                    
+    </IconButton>
+    <IconButton color="warning" onClick={() => remove(row._id)} >
+      
+                    <DeleteIcon />
+    </IconButton>
+                  </TableCell>
+     
+                </TableRow>
+              ))
+            ))
+          }
+       
         </TableBody>
       </Table>
     </TableContainer>

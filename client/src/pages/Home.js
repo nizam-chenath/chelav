@@ -4,6 +4,7 @@ import TransactionsList from "../components/TransactionsList";
 import Container from '@mui/material/Container';
 import { useEffect, useState } from "react";
 import Cookies from 'js-cookie'
+import TransactionChart from '../components/TransactionChart';
 
 
 const Home = () => {
@@ -33,10 +34,13 @@ const Home = () => {
   return (
     <div>
             <Container>
+
+              <TransactionChart data={transactions}/>
+
       
       <TransactionForm fetchTransaction={fetchTransaction} editTransaction={editTransaction}/>
 
-      <TransactionsList transactions={transactions} fetchTransaction={fetchTransaction} setEditTransaction={setEditTransaction}/>
+      <TransactionsList data={transactions} fetchTransaction={fetchTransaction} setEditTransaction={setEditTransaction}/>
       </Container>
     </div>
   )
