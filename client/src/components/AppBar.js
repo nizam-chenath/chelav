@@ -37,11 +37,17 @@ export default function ButtonAppBar() {
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           <Link to="/" className="text-white">
-            Chelav
+            Expencer
           </Link>
           </Typography>
           <Link to='/category' className="text-white">
           <Button color="inherit">Category</Button>
+          </Link>
+          <Link to='/graph' className="text-white">
+          <Button color="inherit">graph</Button>
+          </Link>
+          <Link to='/list' className="text-white">
+          <Button color="inherit">Expence List</Button>
           </Link>
 
           {

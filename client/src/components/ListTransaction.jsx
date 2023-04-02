@@ -7,7 +7,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import dayjs from 'dayjs'
@@ -17,7 +16,7 @@ import {useSelector} from 'react-redux'
 
 
 
-export default function TransactionsList({data,fetchTransaction,setEditTransaction}) {
+export default function ListTransaction({data,fetchTransaction}) {
 
      const user = useSelector((state) => state.auth.user)
 
@@ -79,11 +78,7 @@ export default function TransactionsList({data,fetchTransaction,setEditTransacti
     
             
     
-    <IconButton color="primary" onClick={() => setEditTransaction(row)} >
-                    <EditIcon />
-      
-                    
-    </IconButton>
+    
     <IconButton color="warning" onClick={() => remove(row._id)} >
       
                     <DeleteIcon />

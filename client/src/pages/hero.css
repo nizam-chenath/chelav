@@ -1,0 +1,24 @@
+.hero-page{
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: 1fr 1.2fr;
+    place-content: center;
+}
+.all{
+    background-image: url("../images/homeimg.jpeg");
+}
+.left-section{
+    display: grid;
+    place-content: center;
+}
+.add-btn{
+    padding: 20px;
+    width: 200px;
+    border: none;
+    background-color: rgb(56, 56, 148);
+    color: white;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 16px;
+}

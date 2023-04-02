@@ -1,15 +1,11 @@
-import React from 'react'
-import TransactionForm from "../components/TransactionForm";
-import TransactionsList from "../components/TransactionsList";
-import Container from '@mui/material/Container';
-import { useEffect, useState } from "react";
+import React,{useState,useEffect} from 'react'
+
+import TransactionChart from '../components/TransactionChart';
 import Cookies from 'js-cookie'
+import Container from '@mui/material/Container';
 
-
-
-const Home = () => {
+const Chart = () => {
     const [transactions, setTransactions] = useState([])
-    const [editTransaction, setEditTransaction] = useState({})
 
     useEffect(() => {
  
@@ -33,17 +29,13 @@ const Home = () => {
       }
   return (
     <div>
-            <Container>
-
-             
-
-      
-      <TransactionForm fetchTransaction={fetchTransaction} editTransaction={editTransaction}/>
-
-      <TransactionsList data={transactions} fetchTransaction={fetchTransaction} setEditTransaction={setEditTransaction}/>
-      </Container>
+    <Container>
+    
+    <TransactionChart data={transactions}/>
+    
+    </Container>
     </div>
   )
 }
 
-export default Home
+export default Chart
