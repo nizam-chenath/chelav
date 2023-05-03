@@ -11,7 +11,7 @@ import routes from './routes/index.js'
 
 dotenv.config()
 
-const PORT = process.env.BASE_URL || 5000
+const PORT = process.env.PORT || 5000
 const app = express();
 
 app.use(cors()) //used because of adding datas in to database from react
