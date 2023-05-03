@@ -11,7 +11,7 @@ import routes from './routes/index.js'
 
 dotenv.config()
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.BASE_URL || 5000
 const app = express();
 
 app.use(cors()) //used because of adding datas in to database from react
@@ -31,5 +31,5 @@ await connect(); //we make a function for mogodb connection
 
 //listen server orn this port
 app.listen(PORT,()=>{
-    console.log("server started")
+    console.log(`server started at ${PORT} `)
 })

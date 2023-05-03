@@ -16,7 +16,7 @@ const Chart = () => {
          const token = Cookies.get('token')
         //it is for fetching transacti on datas from database. it is default GET method
       
-        const res = await fetch(`http://localhost:5000/transaction`,{
+        const res = await fetch(`https://chelav-backend2.onrender.com/transaction`,{
             headers:{
                 Authorization: `Bearer ${token}`
             }

@@ -35,7 +35,7 @@ export default function Category() {
   
 
   async function remove(id) {
-      const res =await fetch(`http://localhost:5000/category/${id}`,{
+      const res =await fetch(`https://chelav-backend2.onrender.com/category/${id}`,{
           method: "DELETE",
           headers:{
               Authorization: `Bearer ${token}`

@@ -28,7 +28,7 @@ export default function ListTransaction({data,fetchTransaction}) {
   const remove = async(_id) =>{
     const token = Cookies.get('token')
     if(!window.confirm("Are you sure")) return;
-    const res = await fetch(`http://localhost:5000/transaction/${_id}`,{
+    const res = await fetch(`https://chelav-backend2.onrender.com/transaction/${_id}`,{
       method: "DELETE",
       headers:{
         Authorization: `Bearer ${token}`

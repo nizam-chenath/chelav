@@ -33,7 +33,7 @@ function App() {
   */
  const fetchUser = async() =>{
      setisLoading(true)
-  const res = await fetch('http://localhost:5000/user',{
+  const res = await fetch('https://chelav-backend2.onrender.com/user',{
         headers:{
             Authorization: `Bearer ${token}`
         }

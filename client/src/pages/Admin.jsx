@@ -7,7 +7,7 @@ const Admin = () => {
   const [usersData, setUsersData] = useState([])
   const getusers = async(e) =>{
     
-    const res = await fetch("http://localhost:5000/admin",{
+    const res = await fetch("https://chelav-backend2.onrender.com/admin",{
       method: "GET",
       headers: {
         "Content-Type" : "application/json",

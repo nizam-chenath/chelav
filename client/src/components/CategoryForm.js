@@ -69,7 +69,7 @@ export default function CategoryForm({ editCategory}) {
   const create = async() =>{
           // it is for createing a category data
 
-  const res = await  fetch(`http://localhost:5000/category`,{
+  const res = await  fetch(`https://chelav-backend2.onrender.com/category`,{
     method: "POST",
     body: JSON.stringify(form),
     headers: {
@@ -86,7 +86,7 @@ export default function CategoryForm({ editCategory}) {
   const update = async() =>{
     // it is for createing a transaction data
 
-const res = await  fetch(`http://localhost:5000/category/${editCategory._id}`,{
+const res = await  fetch(`https://chelav-backend2.onrender.com/category/${editCategory._id}`,{
 method: "PATCH",
 body: JSON.stringify(form),
 headers: {

@@ -58,7 +58,7 @@ export default function TransactionForm({ fetchTransaction, editTransaction }) {
   const create = async () => {
     // it is for createing a transaction data
 
-    const res = await fetch(`http://localhost:5000/transaction`, {
+    const res = await fetch(`https://chelav-backend2.onrender.com/transaction`, {
       method: "POST",
       body: JSON.stringify(form),
       headers: {
@@ -73,7 +73,7 @@ export default function TransactionForm({ fetchTransaction, editTransaction }) {
     // it is for createing a transaction data
 
     const res = await fetch(
-      `http://localhost:5000/transaction/${editTransaction._id}`,
+      `https://chelav-backend2.onrender.com/transaction/${editTransaction._id}`,
       {
         method: "PATCH",
         body: JSON.stringify(form),
