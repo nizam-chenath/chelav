@@ -111,11 +111,11 @@ const getCategoryNameById = () =>{
         <Typography variant="h6">
           Add new category :)
         </Typography>
-        <Box component='form' onSubmit={handleSubmit} sx={{display: "flex"}}>
+        <Box component='form' onSubmit={handleSubmit} sx={{display: "flex", flexWrap: "wrap"}}>
        
 
 
-        <TextField size="small" type="text" name="label" value={form.label} onChange={handleChange} sx={{marginRight: 5}} id="outlined-basic" label="Label" variant="outlined" />
+        <TextField size="small" type="text" name="label" value={form.label} onChange={handleChange} sx={{marginRight: 5, marginTop: 5}} id="outlined-basic" label="Label" variant="outlined" />
        
             <Autocomplete
         value={getCategoryNameById()}
@@ -125,15 +125,15 @@ const getCategoryNameById = () =>{
       
         id="icons"
         options={icons}
-        sx={{ width: 200 , marginRight:5}}
+        sx={{ width: 200 , marginRight:5, marginTop: 5}}
         renderInput={(params) => <TextField {...params} label="Icon" />}
       />
             {
               editCategory._id !== undefined ?
-              <Button type="submit" variant="contained">update</Button>
+              <Button type="submit" variant="contained" sx={{marginTop: 5}}>update</Button>
                   :
 
-            <Button type="submit" variant="contained">Submit</Button>
+            <Button type="submit" variant="contained" sx={{marginTop: 5}}>Submit</Button>
             }
        </Box>
       </CardContent>

@@ -96,13 +96,13 @@ export default function TransactionForm({ fetchTransaction, editTransaction }) {
     <Card sx={{ minWidth: 275, marginTop: 10 }}>
       <CardContent>
         <Typography variant="h6">Hey, any new transaction :)</Typography>
-        <Box component="form" onSubmit={handleSubmit} sx={{ display: "flex" }}>
+        <Box component="form" onSubmit={handleSubmit} sx={{ display: "flex",flexWrap: "wrap"  }}>
           <TextField
             size="small"
             name="amount"
             value={form.amount}
             onChange={handleChange}
-            sx={{ marginRight: 5 }}
+            sx={{ marginRight: 5 , marginTop:5}}
             id="outlined-basic"
             label="Amount"
             variant="outlined"
@@ -112,7 +112,7 @@ export default function TransactionForm({ fetchTransaction, editTransaction }) {
             name="description"
             value={form.description}
             onChange={handleChange}
-            sx={{ marginRight: 5 }}
+            sx={{ marginRight: 5,  marginTop:5 }}
             id="outlined-basic"
             label="Description"
             variant="outlined"
@@ -123,27 +123,29 @@ export default function TransactionForm({ fetchTransaction, editTransaction }) {
               inputFormat="MM/DD/YYYY"
               onChange={handleDate}
               value={form.date}
+             
               renderInput={(params) => (
-                <TextField size="small" sx={{ marginRight: 5 }} {...params} />
+                <TextField size="small" sx={{ marginRight: 5 , marginTop: 5 }} {...params} />
               )}
             />
           </LocalizationProvider>
           <Autocomplete
             value={getCategoryNameById()}
+            
             onChange={(event, newValue) => {
               setForm({ ...form, category_id: newValue._id });
             }}
             id="controllable-states-demo"
             options={categories}
-            sx={{ width: 200, marginRight: 5 }}
+            sx={{ width: 200, marginRight: 5 , marginTop: 5}}
             renderInput={(params) => <TextField {...params} label="Category" />}
           />
           {editTransaction.amount !== undefined ? (
-            <Button type="submit" variant="contained">
+            <Button type="submit" variant="contained"  sx={{marginTop: 5}}>
               update
             </Button>
           ) : (
-            <Button type="submit" variant="contained">
+            <Button type="submit" variant="contained"  sx={{marginTop: 5}}>
               Submit
             </Button>
           )}
