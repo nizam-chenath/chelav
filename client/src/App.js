@@ -9,7 +9,12 @@ import React,{useState} from 'react'
 import Cookies from 'js-cookie'
 import {Navigate, redirect} from 'react-router-dom'
 
-
+/**
+ *  - this is my app.js
+ * @module App
+ *
+ * @returns 
+ */
 function App() {
 
 
@@ -21,6 +26,11 @@ function App() {
 
  
 
+ /**
+  * @memberof App
+  * @function fetchUser
+  * @summary - this is a function for fetch the users
+  */
  const fetchUser = async() =>{
      setisLoading(true)
   const res = await fetch('http://localhost:5000/user',{

@@ -8,6 +8,7 @@ const Hero = () => {
 
     const goToAddExpense = () => {
         navigate('/addexpence')
+        window.location.reload();
     }
   return (
     <div className='all'>
