@@ -37,7 +37,7 @@ export default function ButtonAppBar() {
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           <Link to="/" className="text-white">
-            Expenser
+            Pocketpilot
           </Link>
           </Typography>
           <Link to='/category' className="text-white">
